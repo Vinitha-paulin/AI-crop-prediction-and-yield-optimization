@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Prediction History</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: Arial;
+
+    /* SAME BACKGROUND AS DASHBOARD */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url("https://images.unsplash.com/photo-1500382017468-9049fed747ef") no-repeat center/cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Center Box */
+.container {
+    background: rgba(255,255,255,0.9);
+    padding: 30px;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 800px;
+    text-align: center;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th {
+    background-color: green;
+    color: white;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+a {
+    text-decoration: none;
+    color: green;
+    font-weight: bold;
+}
+
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>📊 Prediction History</h2>
+
+    <table>
+        <tr>
+            <th>Temperature</th>
+            <th>Humidity</th>
+            <th>Rainfall</th>
+            <th>Soil</th>
+            <th>Prediction</th>
+            <th>Date</th>
+        </tr>
+
+        {% for row in history %}
+        <tr>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td>{{ row[5] }}</td>
+            <td>{{ row[6] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="buttons">
+        <a href="/dashboard">⬅ Back</a>
+        <a href="/logout">🚪 Logout</a>
+    </div>
+
+</div>
+
+</body>
+</html>

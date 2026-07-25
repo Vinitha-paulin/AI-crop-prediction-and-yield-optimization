@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Dashboard</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url("https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1920&auto=format&fit=crop");
+
+    background-size:cover;
+    background-position:center;
+}
+
+.box{
+    width:420px;
+    padding:30px;
+
+    background:rgba(255,255,255,0.15);
+
+    border-radius:20px;
+
+    backdrop-filter:blur(10px);
+
+    box-shadow:0 8px 32px rgba(0,0,0,0.3);
+
+    color:white;
+}
+
+.welcome{
+    text-align:center;
+    margin-bottom:10px;
+    font-size:15px;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:20px;
+    font-size:30px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+
+    border:none;
+    border-radius:10px;
+
+    outline:none;
+
+    background:rgba(255,255,255,0.85);
+
+    font-size:15px;
+}
+
+.predict-btn{
+    width:100%;
+    padding:14px;
+    margin-top:15px;
+
+    border:none;
+    border-radius:12px;
+
+    background:#2ecc71;
+    color:white;
+
+    font-size:18px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.predict-btn:hover{
+    background:#27ae60;
+    transform:scale(1.03);
+}
+
+.result{
+    margin-top:20px;
+    text-align:center;
+
+    background:rgba(255,255,255,0.2);
+
+    padding:15px;
+    border-radius:12px;
+}
+
+.links{
+    margin-top:20px;
+
+    display:flex;
+    justify-content:space-between;
+}
+
+.links a{
+    text-decoration:none;
+    color:white;
+
+    background:rgba(255,255,255,0.2);
+
+    padding:10px 15px;
+
+    border-radius:10px;
+
+    transition:0.3s;
+}
+
+.links a:hover{
+    background:rgba(255,255,255,0.4);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+    <div class="welcome">
+        👋 Welcome {{ session['user'] }}
+    </div>
+
+    <h2>AI Crop Prediction</h2>
+
+    <form method="POST">
+
+        <input type="number" step="any" name="temperature" placeholder="Temperature" required>
+
+        <input type="number" step="any" name="humidity" placeholder="Humidity" required>
+
+        <input type="number" step="any" name="rainfall" placeholder="Rainfall" required>
+
+        <input type="number" step="any" name="soil" placeholder="Soil Moisture" required>
+
+        <input type="number" step="any" name="N" placeholder="Nitrogen">
+
+        <input type="number" step="any" name="P" placeholder="Phosphorus">
+
+        <input type="number" step="any" name="K" placeholder="Potassium">
+
+        <button type="submit" formaction="/predict" class="predict-btn">
+            Predict Yield
+        </button>
+
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <h3>🌾 Predicted Yield</h3>
+        <p>{{ result }} tons/hectare</p>
+    </div>
+    {% endif %}
+
+    <div class="links">
+        <a href="/history">📊 History</a>
+        <a href="/logout">🚪 Logout</a>
+    </div>
+
+</div>
+
+</body>
+</html>
