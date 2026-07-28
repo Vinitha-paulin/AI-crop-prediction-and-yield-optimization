@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Predict Crop Yield</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+}
+
+
+.container{
+width:500px;
+background:white;
+padding:40px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+h2{
+text-align:center;
+color:#2E8B57;
+margin-bottom:25px;
+}
+
+label{
+display:block;
+margin-top:15px;
+margin-bottom:8px;
+font-weight:600;
+color:#333;
+}
+
+input{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:10px;
+font-size:16px;
+}
+
+input:focus{
+outline:none;
+border:2px solid #2E8B57;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:25px;
+background:#2E8B57;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+background:#1d6b42;
+}
+
+.result{
+margin-top:25px;
+padding:15px;
+background:#e8f5e9;
+border-left:5px solid #2E8B57;
+border-radius:10px;
+font-size:18px;
+font-weight:bold;
+color:#2E8B57;
+text-align:center;
+}
+
+.back{
+text-align:center;
+margin-top:20px;
+}
+
+.back a{
+text-decoration:none;
+color:#2E8B57;
+font-weight:bold;
+}
+.predict-page {
+    background-image: url("/static/images/predict_bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+</style>
+
+</head>
+
+<body class="predict-page">
+
+<div class="container">
+
+<h2>🌾 Crop Yield Prediction</h2>
+
+<form action="/predict" method="POST">
+
+<label>🌡 Temperature (°C)</label>
+<input type="number" step="any" name="temperature" required>
+
+<label>💧 Humidity (%)</label>
+<input type="number" step="any" name="humidity" required>
+
+<label>🌧 Rainfall (mm)</label>
+<input type="number" step="any" name="rainfall" required>
+
+<label>🌱 Soil Moisture (%)</label>
+<input type="number" step="any" name="soil_moisture" required>
+
+<button type="submit">Predict Yield</button>
+
+
+</form>
+
+{% if prediction %}
+
+<div class="result">
+
+<h3>🌾 Prediction Successful</h3>
+
+<hr>
+
+<p><b>🌡 Temperature:</b> {{ temperature }} °C</p>
+
+<p><b>💧 Humidity:</b> {{ humidity }} %</p>
+
+<p><b>🌧 Rainfall:</b> {{ rainfall }} mm</p>
+
+<p><b>🌱 Soil Moisture:</b> {{ soil_moisture }} %</p>
+
+<h2 style="color:green;">
+Predicted Yield
+</h2>
+
+<h1 style="color:#2E8B57;">
+{{ prediction }} tons/hectare
+</h1>
+
+</div>
+
+{% endif %}
+
+</body>
+</html>

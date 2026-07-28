@@ -149,7 +149,7 @@ input{
 
         <input type="number" step="any" name="rainfall" placeholder="Rainfall" required>
 
-        <input type="number" step="any" name="soil" placeholder="Soil Moisture" required>
+        <input type="number" step="any" name="area" placeholder="Area (hectares)" required>
 
         <input type="number" step="any" name="N" placeholder="Nitrogen">
 
@@ -158,8 +158,12 @@ input{
         <input type="number" step="any" name="K" placeholder="Potassium">
 
         <button type="submit" formaction="/predict" class="predict-btn">
-            Predict Yield
-        </button>
+    🌾 Predict Yield
+</button>
+
+<button type="submit" formaction="/recommend" class="predict-btn">
+    🌱 Recommend Crop
+</button>
 
     </form>
 
@@ -169,6 +173,19 @@ input{
         <p>{{ result }} tons/hectare</p>
     </div>
     {% endif %}
+    {% if result %}
+<div class="result">
+    <h3>🌾 Predicted Yield</h3>
+    <p>{{ result }} tons/hectare</p>
+</div>
+{% endif %}
+
+{% if crop %}
+<div class="result">
+    <h3>🌱 Recommended Crop</h3>
+    <p>{{ crop }}</p>
+</div>
+{% endif %}
 
     <div class="links">
         <a href="/history">📊 History</a>
